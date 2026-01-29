@@ -15,7 +15,7 @@
   $sizes = [
     'sm' => 'px-3 py-2 gap-2',
     'md' => 'px-4 py-2 gap-2',
-    'lg' => 'px-6 py-2 gap-3',
+    'lg' => 'px-6 py-3 gap-3',
   ];
 
   $classes = trim($base.' '.($variants[$variant] ?? $variants['primary']).' '.($sizes[$size] ?? $sizes['md']));

@@ -1,115 +1,14 @@
 @import "tailwindcss" theme(static);
+@import "./base/typography.css";
+@import "./base/color.css";
+@import "./components/menu.css";
+
 @source "../views/";
 @source "../../app/";
 
-
-@theme {
-    /* primary */
-    --color-primary-100: #1F1A80;
-    --color-primary-200: #13104F;
-    --color-primary-300: #040136;
-    --color-primary-400: #040226;
-    --color-primary-500: #01000D;
-
-     /* blue */
-     --color-blue-100: #4E6BC2;
-     --color-blue-200: #3250A8;
-     --color-blue-300: #1C398E;
-     --color-blue-400: #0C2775;
-     --color-blue-500: #00175C;
-  
-    /* orange */
-    --color-orange-100: #FF854D;
-    --color-orange-200: #FF7433;
-    --color-orange-300: #EE4C01;
-    --color-orange-400: #E54901;
-    --color-orange-500: #E54900;
-
-    /* Display lg: 52 / 56 / tracking -2% */
-    --text-display-lg: 52px;
-    --text-display-lg--line-height: 56px;
-    --text-display-lg--letter-spacing: -0.02em;
-
-    /* Display md: 36 / 44 */
-    --text-display-md: 36px;
-    --text-display-md--line-height: 44px;
-
-    /* Display sm: 30 / 38 */
-    --text-display-sm: 30px;
-    --text-display-sm--line-height: 38px;
-
-    /* Display xs: 24 / 32 */
-    --text-display-xs: 24px;
-    --text-display-xs--line-height: 32px;
-
-    /* Text xl: 20 / 30 */
-    --text-textsize-xl: 20px;
-    --text-textsize-xl--line-height: 30px;
-
-    /* Text lg: 18 / 28 */
-    --text-textsize-lg: 18px;
-    --text-textsize-lg--line-height: 28px;
-
-    /* Text md: 16 / 24 */
-    --text-textsize-md: 16px;
-    --text-textsize-md--line-height: 24px;
-
-    /* Text sm: 14 / 22 */
-    --text-textsize-sm: 14px;
-    --text-textsize-sm--line-height: 22px;
-
-    /* Text xs: 12 / 16 */
-    --text-textsize-xs: 12px;
-    --text-textsize-xs--line-height: 16px;
-  }
-
-  @layer components {
-    /* Display LG */
-    .display-lg-regular  { @apply text-display-lg font-normal; }
-    .display-lg-medium   { @apply text-display-lg font-medium; }
-    .display-lg-semibold { @apply text-display-lg font-semibold; }
-    .display-lg-bold     { @apply text-display-lg font-bold; }
-  
-    /* Display MD */
-    .display-md-regular  { @apply text-display-md font-normal; }
-    .display-md-medium   { @apply text-display-md font-medium; }
-    .display-md-semibold { @apply text-display-md font-semibold; }
-    .display-md-bold     { @apply text-display-md font-bold; }
-  
-    /* Display SM */
-    .display-sm-regular  { @apply text-display-sm font-normal; }
-    .display-sm-medium   { @apply text-display-sm font-medium; }
-    .display-sm-semibold { @apply text-display-sm font-semibold; }
-    .display-sm-bold     { @apply text-display-sm font-bold; }
-  
-    /* Display XS */
-    .display-xs-regular  { @apply text-display-xs font-normal; }
-    .display-xs-medium   { @apply text-display-xs font-medium; }
-    .display-xs-semibold { @apply text-display-xs font-semibold; }
-    .display-xs-bold     { @apply text-display-xs font-bold; }
-
-    /* text XL */
-    .text-xl-regular  { @apply text-textsize-xl font-normal; }
-    .text-xl-medium   { @apply text-textsize-xl font-medium; }
-    .text-xl-semibold { @apply text-textsize-xl font-semibold; }
-    .text-xl-bold     { @apply text-textsize-xl font-bold; }
-
-    /* text MD */
-    .text-md-regular  { @apply text-textsize-md font-normal; }
-    .text-md-medium   { @apply text-textsize-md font-medium; }
-    .text-md-semibold { @apply text-textsize-md font-semibold; }
-    .text-md-bold     { @apply text-textsize-md font-bold; }
-
-    /* text sm */
-    .text-sm-regular  { @apply text-textsize-sm font-normal; }
-    .text-sm-medium   { @apply text-textsize-sm font-medium; }
-    .text-sm-semibold { @apply text-textsize-sm font-semibold; }
-    .text-sm-bold     { @apply text-textsize-sm font-bold; }
-
-    /* text xs */
-    .text-xs-regular  { @apply text-textsize-xs font-normal; }
-    .text-xs-medium   { @apply text-textsize-xs font-medium; }
-    .text-xs-semibold { @apply text-textsize-xs font-semibold; }
-    .text-xs-bold     { @apply text-textsize-xs font-bold; }
-  }
+@layer base {
+    a {
+      @apply !no-underline hover:underline focus-visible:underline;
+    }
+}
   

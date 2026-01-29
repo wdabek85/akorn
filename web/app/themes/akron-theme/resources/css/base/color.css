@@ -1,0 +1,22 @@
+@theme {
+    /* primary */
+    --color-primary-100: #1F1A80;
+    --color-primary-200: #13104F;
+    --color-primary-300: #040136;
+    --color-primary-400: #040226;
+    --color-primary-500: #01000D;
+
+     /* blue */
+     --color-blue-100: #4E6BC2;
+     --color-blue-200: #3250A8;
+     --color-blue-300: #1C398E;
+     --color-blue-400: #0C2775;
+     --color-blue-500: #00175C;
+  
+    /* orange */
+    --color-orange-100: #FF854D;
+    --color-orange-200: #FF7433;
+    --color-orange-300: #EE4C01;
+    --color-orange-400: #E54901;
+    --color-orange-500: #E54900;
+  }

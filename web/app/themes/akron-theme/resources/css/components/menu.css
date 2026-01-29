@@ -1,0 +1,22 @@
+@layer components {
+
+    .primary-menu li.menu-sep-before {
+        position: relative;
+        margin-left: 1.5rem;
+        padding-left: 1.5rem;
+      }
+    
+      .primary-menu li.menu-sep-before::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 1px;
+        height: 1.5rem;
+        background: #fff;
+      }
+
+    
+  }
+  

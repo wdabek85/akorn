@@ -35,4 +35,17 @@ export default defineConfig({
       '@images': '/resources/images',
     },
   },
+
+  server: {
+    host: '127.0.0.1',      // ważne: nie [::1]
+    port: 5175,
+    strictPort: true,
+    cors: { origin: 'http://akorn.local' },
+    hmr: {
+      host: 'akorn.local',
+      protocol: 'ws',
+      port: 5175,
+    },
+  },
 })
+

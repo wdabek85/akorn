@@ -2,7 +2,7 @@
 @section('content')
 
     <div class="flex gap-2">
-        <x-button href="{{ home_url('/kontakt') }}" variant="primary" size="lg">
+        <x-button href="{{ home_url('/kontakt') }}" variant="primary" size="lg" class="!bg-orange-300">
             Kup teraz
         </x-button>
     
@@ -15,6 +15,5 @@
             Dodaj
         </x-button>
     </div>
-    
-  
+    @include('sections.hero.index')
 @endsection

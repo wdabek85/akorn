@@ -6,6 +6,7 @@
 
 namespace App;
 
+
 use Illuminate\Support\Facades\Vite;
 
 /**
@@ -63,6 +64,7 @@ add_filter('theme_file_path', function ($path, $file) {
  * @return void
  */
 add_action('after_setup_theme', function () {
+
     /**
      * Disable full-site editing support.
      *
