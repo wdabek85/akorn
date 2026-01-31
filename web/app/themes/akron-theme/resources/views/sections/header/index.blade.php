@@ -1,7 +1,7 @@
 <header class="w-full">
     {{-- TOP BAR (email + tel) --}}
     <div class="bg-zinc-100">
-      <div class="mx-auto flex items-center justify-center gap-8 px-4 py-3 lg:px-10 items-between lg:max-w-[1440px] 2xl:max-w-[1600px]">
+      <div class="mx-auto w-full flex items-center justify-center gap-8 px-5 py-3 lg:px-10 items-between lg:max-w-[1440px] 2xl:max-w-[1600px]">
         <a href="mailto:kontakt@akorn.pl" class="flex items-center gap-2 text-xs-semibold">
           {{-- icon mail --}}
           <x-icon.mail />
@@ -21,8 +21,8 @@
     </div>
   
     {{-- NAV BAR (logo + kontakt + burger) --}}
-    <div class="bg-slate-950">
-      <div class="max-w-[1600px] mx-auto flex items-center justify-between gap-4 px-5 py-3 lg:px-10">
+    <div class="bg-primary-400">
+      <div class="mx-auto w-full flex items-center justify-between gap-4 px-5 py-3 lg:px-10 lg:max-w-[1440px] 2xl:max-w-[1600px]">
         <div class="flex gap-8">
           <a href="{{ home_url('/') }}" class="text-4xl font-extrabold italic text-white">
             <img src="{{ get_theme_file_uri('resources/images/logo.svg') }}" alt="Akorn">
