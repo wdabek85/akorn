@@ -1,5 +1,5 @@
 <section class="hero bg-primary-400" data-hero>
-    <div class="mx-auto w-full  lg:pl-15">
+    <div class="mx-auto w-full  lg:pl-10 max-w-[1600px]">
       <div class="grid gap-8 lg:grid-cols-2 lg:items-center">
   
         <div class="px-5">
@@ -45,7 +45,7 @@
               <img
                 src="{{ $imgUrl }}"
                 alt="{{ $imgAlt }}"
-                class="w-full max-w-[640px] "
+                class="w-full  max-h-[325px] object-cover lg:min-w-[640px]"
                 loading="eager"
               >
             @endif
@@ -55,46 +55,48 @@
       </div>
     </div>
   </section>
-  <section class="w-full flex flex-col lg:flex-row bg-primary-400 pb-4">
-    <div class="flex flex-col max-h-[325px] overflow-hidden">
-        @if(!empty($hero['below']['bgUrl']))
-          <img
-            src="{{ $hero['below']['bgUrl'] }}"
-            alt="{{ $hero['below']['bgAlt'] ?? '' }}"
-            class="w-full object-contain  flex-1 min-h-0 bg-orange-300"
-            loading="lazy"
-            decoding="async"
-          >
-        @endif
-      
-        <div class="w-full px-4 pb-[16px] bg-orange-300 shrink-0">
-          @if(!empty($hero['below']['text']))
-            <p class="text-black text-xs-regular">
-              {{ $hero['below']['text'] }}
-            </p>
+  <section class="w-full bg-primary-400 pb-4">
+    <div class="flex flex-col lg:flex-row max-w-[1600px] mx-auto">
+      <div class="flex flex-col max-h-[325px] overflow-hidden">
+          @if(!empty($hero['below']['bgUrl']))
+            <img
+              src="{{ $hero['below']['bgUrl'] }}"
+              alt="{{ $hero['below']['bgAlt'] ?? '' }}"
+              class="w-full object-contain  flex-1 min-h-0 bg-orange-300"
+              loading="lazy"
+              decoding="async"
+            >
           @endif
-        </div>
-    </div>  
-    @if(!empty($hero['below']['benefits']))
-    <div class="grid md:grid-cols-3">
-        @foreach($hero['below']['benefits'] as $item)
-        <div class="flex justify-between flex-col p-6 bg-[#E5E7EB] h-[325px] nth-2:bg-[#F9FAFB] ">
-            <div class="flex justify-between">
-                <div class="display-lg-regular">{{ $item['number'] }}</div>
-                @if(!empty($item['icon']['url']))
-                <img
-                    src="{{ $item['icon']['url'] }}"
-                    alt="{{ $item['icon']['alt'] ?? '' }}"
-                    class="mb-4 h-[120px] w-[120px]"
-                >
+        
+          <div class="w-full px-4 pb-[16px] bg-orange-300 shrink-0">
+            @if(!empty($hero['below']['text']))
+              <p class="text-black text-xs-regular">
+                {{ $hero['below']['text'] }}
+              </p>
             @endif
-            </div>
-            <div>
-                <div class="mt-2 display-sm-regular">{{ $item['title'] }}</div>
-                <p class="mt-4 text-xs-regular">{{ $item['text'] }}</p>
-            </div>
-        </div>
-        @endforeach
+          </div>
+      </div>  
+      @if(!empty($hero['below']['benefits']))
+      <div class="grid md:grid-cols-3">
+          @foreach($hero['below']['benefits'] as $item)
+          <div class="flex justify-between flex-col p-6 bg-[#E5E7EB] h-[325px] nth-2:bg-[#F9FAFB] ">
+              <div class="flex justify-between">
+                  <div class="display-lg-regular">{{ $item['number'] }}</div>
+                  @if(!empty($item['icon']['url']))
+                  <img
+                      src="{{ $item['icon']['url'] }}"
+                      alt="{{ $item['icon']['alt'] ?? '' }}"
+                      class="mb-4 h-[120px] w-[120px]"
+                  >
+              @endif
+              </div>
+              <div>
+                  <div class="mt-2 display-sm-regular">{{ $item['title'] }}</div>
+                  <p class="mt-4 text-xs-regular">{{ $item['text'] }}</p>
+              </div>
+          </div>
+          @endforeach
+      </div>
+      @endif
     </div>
-    @endif
   </section>
