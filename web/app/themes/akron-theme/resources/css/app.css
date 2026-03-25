@@ -7,8 +7,15 @@
 @source "../../app/";
 
 @layer base {
+    html {
+      overflow-y: scroll;
+    }
+
     a {
       @apply !no-underline hover:underline focus-visible:underline;
     }
-}
-  
+
+    [data-opinie-slider]::-webkit-scrollbar {
+      display: none;
+    }
+}  

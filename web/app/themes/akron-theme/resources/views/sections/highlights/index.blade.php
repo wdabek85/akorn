@@ -1,0 +1,68 @@
+@props([
+  'label' => '',
+  'heading' => '',
+  'items' => [],
+  'image' => '',
+  'imageCaption' => '',
+])
+
+@if(!empty($items))
+<section class="w-full bg-white">
+  <div class="max-w-[1600px] mx-auto px-4 py-6 lg:px-[80px] lg:py-12 flex flex-col gap-10 lg:flex-row lg:gap-[80px] lg:items-center">
+
+    {{-- Lewa kolumna: nagłówek + punkty --}}
+    <div class="flex flex-col gap-4 py-10 lg:flex-1">
+      @if($label)
+        <p class="text-[10px] leading-3 text-black">
+          {!! $label !!}
+        </p>
+      @endif
+
+      <div class="flex flex-col gap-6">
+        @if($heading)
+          <h2 class="text-[36px] leading-10 font-normal text-black">{{ $heading }}</h2>
+        @endif
+
+        <div class="flex flex-col gap-6">
+          @foreach(array_chunk($items, 2) as $row)
+            <div class="flex flex-col gap-6 lg:flex-row lg:gap-6">
+              @foreach($row as $item)
+                <div class="flex gap-2 items-start flex-1">
+                  <div class="shrink-0 bg-black rounded-full p-2.5">
+                    <svg class="size-6 text-white" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"/>
+                      <path d="M20.488 11H13V3.512A9.025 9.025 0 0120.488 11z"/>
+                    </svg>
+                  </div>
+                  <div class="flex flex-col gap-2 flex-1">
+                    <h3 class="text-sm-semibold text-black">{{ $item['title'] ?? '' }}</h3>
+                    <p class="text-xs-regular text-black">{{ $item['description'] ?? '' }}</p>
+                  </div>
+                </div>
+              @endforeach
+            </div>
+          @endforeach
+        </div>
+      </div>
+    </div>
+
+    {{-- Prawa kolumna: zdjęcie --}}
+    @if($image)
+      <div class="lg:flex-1">
+        <div class="relative h-[280px] lg:h-[400px] overflow-hidden bg-primary-400">
+          <img
+            src="{{ $image }}"
+            alt="{{ $imageCaption }}"
+            class="absolute inset-0 w-full h-full object-cover"
+            loading="lazy"
+          >
+          @if($imageCaption)
+            <p class="absolute bottom-4 left-5 text-sm-medium text-white">{{ $imageCaption }}</p>
+          @endif
+        </div>
+      </div>
+    @endif
+
+  </div>
+</section>
+@endif

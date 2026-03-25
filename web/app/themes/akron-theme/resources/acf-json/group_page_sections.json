@@ -1,0 +1,445 @@
+{
+    "key": "group_page_sections",
+    "title": "Sekcje strony",
+    "fields": [
+        {
+            "key": "field_page_sections",
+            "label": "Sekcje",
+            "name": "page_sections",
+            "type": "flexible_content",
+            "required": 0,
+            "button_label": "Dodaj sekcję",
+            "layouts": {
+                "layout_benefits": {
+                    "key": "layout_benefits",
+                    "name": "benefits",
+                    "label": "Benefits (karty)",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_fc_benefits_variant",
+                            "label": "Wariant kart",
+                            "name": "variant",
+                            "type": "select",
+                            "required": 0,
+                            "choices": {
+                                "default": "Default (duży numer na dole)",
+                                "features": "Features (numer na górze + ikona 48px)"
+                            },
+                            "default_value": "default"
+                        },
+                        {
+                            "key": "field_fc_benefits_label",
+                            "label": "Label",
+                            "name": "label",
+                            "type": "text",
+                            "required": 0
+                        },
+                        {
+                            "key": "field_fc_benefits_heading",
+                            "label": "Nagłówek",
+                            "name": "heading",
+                            "type": "text",
+                            "required": 0
+                        },
+                        {
+                            "key": "field_fc_benefits_description",
+                            "label": "Opis (pod nagłówkiem)",
+                            "name": "description",
+                            "type": "textarea",
+                            "required": 0,
+                            "rows": 2
+                        },
+                        {
+                            "key": "field_fc_benefits_items",
+                            "label": "Karty",
+                            "name": "items",
+                            "type": "repeater",
+                            "required": 0,
+                            "min": 0,
+                            "max": 8,
+                            "layout": "block",
+                            "sub_fields": [
+                                {
+                                    "key": "field_fc_benefits_item_icon",
+                                    "label": "Ikona",
+                                    "name": "icon",
+                                    "type": "image",
+                                    "required": 0,
+                                    "return_format": "array",
+                                    "preview_size": "thumbnail"
+                                },
+                                {
+                                    "key": "field_fc_benefits_item_title",
+                                    "label": "Tytuł",
+                                    "name": "title",
+                                    "type": "text",
+                                    "required": 1
+                                },
+                                {
+                                    "key": "field_fc_benefits_item_description",
+                                    "label": "Opis",
+                                    "name": "description",
+                                    "type": "textarea",
+                                    "required": 0,
+                                    "rows": 3
+                                },
+                                {
+                                    "key": "field_fc_benefits_item_bg_color",
+                                    "label": "Kolor tła",
+                                    "name": "bg_color",
+                                    "type": "select",
+                                    "required": 0,
+                                    "choices": {
+                                        "primary-400": "Ciemny granat",
+                                        "blue-500": "Granat",
+                                        "blue-300": "Niebieski",
+                                        "blue-100": "Jasny niebieski",
+                                        "gray": "Jasny szary"
+                                    },
+                                    "default_value": "primary-400"
+                                },
+                                {
+                                    "key": "field_fc_benefits_item_bg_image",
+                                    "label": "Dekoracyjne zdjęcie w tle",
+                                    "name": "bg_image",
+                                    "type": "image",
+                                    "required": 0,
+                                    "return_format": "array",
+                                    "preview_size": "medium"
+                                }
+                            ]
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_opinie": {
+                    "key": "layout_opinie",
+                    "name": "opinie",
+                    "label": "Opinie klientów",
+                    "display": "block",
+                    "sub_fields": [],
+                    "min": "",
+                    "max": "1"
+                },
+                "layout_cta": {
+                    "key": "layout_cta",
+                    "name": "cta",
+                    "label": "CTA",
+                    "display": "block",
+                    "sub_fields": [],
+                    "min": "",
+                    "max": "1"
+                },
+                "layout_kontakt": {
+                    "key": "layout_kontakt",
+                    "name": "kontakt",
+                    "label": "Formularz kontaktowy",
+                    "display": "block",
+                    "sub_fields": [],
+                    "min": "",
+                    "max": "1"
+                },
+                "layout_newsletter": {
+                    "key": "layout_newsletter",
+                    "name": "newsletter",
+                    "label": "Newsletter",
+                    "display": "block",
+                    "sub_fields": [],
+                    "min": "",
+                    "max": "1"
+                },
+                "layout_proces": {
+                    "key": "layout_proces",
+                    "name": "proces",
+                    "label": "Proces (4 kroki)",
+                    "display": "block",
+                    "sub_fields": [],
+                    "min": "",
+                    "max": "1"
+                },
+                "layout_uslugi_grid": {
+                    "key": "layout_uslugi_grid",
+                    "name": "uslugi_grid",
+                    "label": "Grid usług",
+                    "display": "block",
+                    "sub_fields": [],
+                    "min": "",
+                    "max": "1"
+                },
+                "layout_highlights": {
+                    "key": "layout_highlights",
+                    "name": "highlights",
+                    "label": "Punkty z opisem + zdjęcie",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_fc_highlights_label",
+                            "label": "Label (np. Podejście <b>Akorn</b>)",
+                            "name": "label",
+                            "type": "text",
+                            "required": 0,
+                            "instructions": "Możesz użyć HTML np. <b>pogrubienie</b>"
+                        },
+                        {
+                            "key": "field_fc_highlights_heading",
+                            "label": "Nagłówek",
+                            "name": "heading",
+                            "type": "text",
+                            "required": 0
+                        },
+                        {
+                            "key": "field_fc_highlights_image",
+                            "label": "Zdjęcie (prawa strona)",
+                            "name": "image",
+                            "type": "image",
+                            "required": 0,
+                            "return_format": "url",
+                            "preview_size": "medium"
+                        },
+                        {
+                            "key": "field_fc_highlights_image_caption",
+                            "label": "Podpis zdjęcia",
+                            "name": "image_caption",
+                            "type": "text",
+                            "required": 0
+                        },
+                        {
+                            "key": "field_fc_highlights_items",
+                            "label": "Punkty",
+                            "name": "items",
+                            "type": "repeater",
+                            "required": 0,
+                            "min": 0,
+                            "max": 6,
+                            "layout": "block",
+                            "sub_fields": [
+                                {
+                                    "key": "field_fc_highlights_item_title",
+                                    "label": "Tytuł",
+                                    "name": "title",
+                                    "type": "text",
+                                    "required": 1
+                                },
+                                {
+                                    "key": "field_fc_highlights_item_description",
+                                    "label": "Opis",
+                                    "name": "description",
+                                    "type": "textarea",
+                                    "required": 0,
+                                    "rows": 3
+                                }
+                            ]
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_platforms": {
+                    "key": "layout_platforms",
+                    "name": "platforms",
+                    "label": "Platformy (logotypy)",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_fc_platforms_heading",
+                            "label": "Nagłówek",
+                            "name": "heading",
+                            "type": "text",
+                            "required": 0
+                        },
+                        {
+                            "key": "field_fc_platforms_description",
+                            "label": "Opis",
+                            "name": "description",
+                            "type": "textarea",
+                            "required": 0,
+                            "rows": 2
+                        },
+                        {
+                            "key": "field_fc_platforms_items",
+                            "label": "Platformy",
+                            "name": "items",
+                            "type": "repeater",
+                            "required": 0,
+                            "min": 0,
+                            "max": 12,
+                            "layout": "block",
+                            "sub_fields": [
+                                {
+                                    "key": "field_fc_platforms_item_logo",
+                                    "label": "Logo",
+                                    "name": "logo",
+                                    "type": "image",
+                                    "required": 0,
+                                    "return_format": "url",
+                                    "preview_size": "thumbnail"
+                                },
+                                {
+                                    "key": "field_fc_platforms_item_title",
+                                    "label": "Tytuł",
+                                    "name": "title",
+                                    "type": "text",
+                                    "required": 1
+                                },
+                                {
+                                    "key": "field_fc_platforms_item_link",
+                                    "label": "Link",
+                                    "name": "link",
+                                    "type": "url",
+                                    "required": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_stats": {
+                    "key": "layout_stats",
+                    "name": "stats",
+                    "label": "Statystyki (wykresy)",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_fc_stats_heading",
+                            "label": "Nagłówek",
+                            "name": "heading",
+                            "type": "text",
+                            "required": 0
+                        },
+                        {
+                            "key": "field_fc_stats_description",
+                            "label": "Opis",
+                            "name": "description",
+                            "type": "textarea",
+                            "required": 0,
+                            "rows": 3
+                        },
+                        {
+                            "key": "field_fc_stats_cta_text",
+                            "label": "CTA tekst",
+                            "name": "cta_text",
+                            "type": "text",
+                            "required": 0
+                        },
+                        {
+                            "key": "field_fc_stats_cta_link",
+                            "label": "CTA link",
+                            "name": "cta_link",
+                            "type": "url",
+                            "required": 0
+                        },
+                        {
+                            "key": "field_fc_stats_items",
+                            "label": "Statystyki (dokładnie 3)",
+                            "name": "items",
+                            "type": "repeater",
+                            "required": 0,
+                            "min": 0,
+                            "max": 3,
+                            "layout": "block",
+                            "sub_fields": [
+                                {
+                                    "key": "field_fc_stats_item_value",
+                                    "label": "Wartość (np. 48%)",
+                                    "name": "value",
+                                    "type": "text",
+                                    "required": 1
+                                },
+                                {
+                                    "key": "field_fc_stats_item_label",
+                                    "label": "Opis statystyki",
+                                    "name": "label",
+                                    "type": "textarea",
+                                    "required": 0,
+                                    "rows": 2
+                                },
+                                {
+                                    "key": "field_fc_stats_item_source",
+                                    "label": "Źródło",
+                                    "name": "source",
+                                    "type": "text",
+                                    "required": 0
+                                },
+                                {
+                                    "key": "field_fc_stats_item_bg_image",
+                                    "label": "Dekoracyjny obrazek",
+                                    "name": "bg_image",
+                                    "type": "image",
+                                    "required": 0,
+                                    "return_format": "url",
+                                    "preview_size": "medium"
+                                }
+                            ]
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_blog": {
+                    "key": "layout_blog",
+                    "name": "blog",
+                    "label": "Wpisy blogowe",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_fc_blog_label",
+                            "label": "Label",
+                            "name": "label",
+                            "type": "text",
+                            "required": 0,
+                            "default_value": "Blog"
+                        },
+                        {
+                            "key": "field_fc_blog_heading",
+                            "label": "Nagłówek",
+                            "name": "heading",
+                            "type": "text",
+                            "required": 0,
+                            "default_value": "Wiedza, którą dzielimy się za darmo."
+                        },
+                        {
+                            "key": "field_fc_blog_category",
+                            "label": "Kategoria (slug)",
+                            "name": "category",
+                            "type": "text",
+                            "required": 0
+                        },
+                        {
+                            "key": "field_fc_blog_count",
+                            "label": "Ilość postów",
+                            "name": "count",
+                            "type": "number",
+                            "required": 0,
+                            "default_value": 3,
+                            "min": 1,
+                            "max": 12
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                }
+            }
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "template-usluga.blade.php"
+            }
+        ]
+    ],
+    "menu_order": 10,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Flexible Content — wybierz i ułóż sekcje na stronie",
+    "show_in_rest": 0
+}

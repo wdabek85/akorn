@@ -1,0 +1,76 @@
+{
+    "key": "group_mega_menu",
+    "title": "Mega Menu — Usługi",
+    "fields": [
+        {
+            "key": "field_mega_menu_items",
+            "label": "Usługi w menu",
+            "name": "mega_menu_items",
+            "type": "repeater",
+            "required": 0,
+            "min": 0,
+            "max": 12,
+            "layout": "block",
+            "button_label": "Dodaj usługę",
+            "sub_fields": [
+                {
+                    "key": "field_mega_menu_item_title",
+                    "label": "Nazwa usługi",
+                    "name": "title",
+                    "type": "text",
+                    "required": 1
+                },
+                {
+                    "key": "field_mega_menu_item_subtitle",
+                    "label": "Krótki opis (widoczny w mega menu)",
+                    "name": "subtitle",
+                    "type": "text",
+                    "required": 0,
+                    "instructions": "np. Strony wizytówki, landing page, firmowe"
+                },
+                {
+                    "key": "field_mega_menu_item_description",
+                    "label": "Opis (panel podglądu po najechaniu)",
+                    "name": "description",
+                    "type": "textarea",
+                    "required": 0,
+                    "rows": 2
+                },
+                {
+                    "key": "field_mega_menu_item_url",
+                    "label": "Link do podstrony",
+                    "name": "url",
+                    "type": "url",
+                    "required": 0
+                },
+                {
+                    "key": "field_mega_menu_item_image",
+                    "label": "Zdjęcie (podgląd w mega menu)",
+                    "name": "image",
+                    "type": "image",
+                    "required": 0,
+                    "return_format": "url",
+                    "preview_size": "medium"
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "mega-menu"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Usługi wyświetlane w mega menu, desktop menu i mobile menu",
+    "show_in_rest": 0
+}

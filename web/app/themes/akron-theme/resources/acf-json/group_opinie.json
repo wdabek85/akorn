@@ -1,0 +1,84 @@
+{
+    "key": "group_opinie",
+    "title": "Opinie klientów",
+    "fields": [
+        {
+            "key": "field_opinie_heading",
+            "label": "Nagłówek sekcji",
+            "name": "opinie_heading",
+            "type": "text",
+            "required": 0,
+            "default_value": "Efekty, które mówią same za siebie"
+        },
+        {
+            "key": "field_opinie_description",
+            "label": "Opis pod nagłówkiem",
+            "name": "opinie_description",
+            "type": "text",
+            "required": 0,
+            "default_value": "Nie musisz wierzyć nam na słowo. Posłuchaj, co mówią firmy, które nam zaufały."
+        },
+        {
+            "key": "field_opinie_items",
+            "label": "Opinie",
+            "name": "opinie_items",
+            "type": "repeater",
+            "required": 0,
+            "min": 0,
+            "max": 0,
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_opinie_item_image",
+                    "label": "Zdjęcie / miniatura wideo",
+                    "name": "image",
+                    "type": "image",
+                    "required": 0,
+                    "return_format": "array",
+                    "preview_size": "medium",
+                    "library": "all"
+                },
+                {
+                    "key": "field_opinie_item_quote",
+                    "label": "Cytat",
+                    "name": "quote",
+                    "type": "textarea",
+                    "required": 1,
+                    "rows": 3
+                },
+                {
+                    "key": "field_opinie_item_author",
+                    "label": "Autor (imię, stanowisko, firma)",
+                    "name": "author",
+                    "type": "text",
+                    "required": 1
+                },
+                {
+                    "key": "field_opinie_item_video_url",
+                    "label": "URL wideo (opcjonalne — YouTube/Vimeo)",
+                    "name": "video_url",
+                    "type": "url",
+                    "required": 0
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "opinie-klientow"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Globalne opinie klientów — wyświetlane przez komponent na dowolnej stronie",
+    "show_in_rest": 0
+}

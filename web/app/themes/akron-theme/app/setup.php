@@ -137,6 +137,38 @@ add_action('after_setup_theme', function () {
  *
  * @return void
  */
+/**
+ * Register ACF Options Pages.
+ */
+add_action('acf/init', function () {
+    if (function_exists('acf_add_options_page')) {
+        acf_add_options_page([
+            'page_title' => 'Opinie klientów',
+            'menu_title' => 'Opinie klientów',
+            'menu_slug'  => 'opinie-klientow',
+            'capability'  => 'edit_posts',
+            'icon_url'    => 'dashicons-format-quote',
+            'position'    => 30,
+            'redirect'    => false,
+        ]);
+
+        acf_add_options_page([
+            'page_title' => 'Mega Menu — Usługi',
+            'menu_title' => 'Mega Menu',
+            'menu_slug'  => 'mega-menu',
+            'capability'  => 'edit_posts',
+            'icon_url'    => 'dashicons-menu',
+            'position'    => 31,
+            'redirect'    => false,
+        ]);
+    }
+});
+
+/**
+ * Register the theme sidebars.
+ *
+ * @return void
+ */
 add_action('widgets_init', function () {
     $config = [
         'before_widget' => '<section class="widget %1$s %2$s">',

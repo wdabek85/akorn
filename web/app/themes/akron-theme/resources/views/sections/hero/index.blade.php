@@ -1,20 +1,35 @@
 <section class="hero bg-primary-400" data-hero>
-    <div class="mx-auto w-full  lg:pl-10 max-w-[1600px]">
+    <div class="mx-auto w-full lg:pl-[80px] max-w-[1600px]">
       <div class="grid gap-8 lg:grid-cols-2 lg:items-center">
-  
-        <div class="px-5">
-          
+
+        <div class="px-5 pt-5 lg:px-0 lg:pt-0">
+
+          @if(function_exists('rank_math_the_breadcrumbs'))
+            <div class="hero-breadcrumb text-textsize-xs text-white/60 mb-4">
+              {!! rank_math_the_breadcrumbs() !!}
+            </div>
+          @endif
+
           <h1 class="display-md-regular text-white lg:hidden">
-            <span class="text-orange-300">Akorn</span> Agencja Digital
+            <span class="text-orange-300">Strona, Sklep, Seo</span>- jeden zespół, spójny plan, realne wyniki
           </h1>
-          <h1 class="hidden display-lg-regular text-white lg:block">
-            <span class="text-orange-300">Akorn</span> Agencja Digital
+          <h1 class="hidden display-md-regular text-white lg:block">
+            <span class="text-orange-300">Strona, Sklep, Seo</span>- jeden zespół, spójny plan, realne wyniki
           </h1>
 
           @if(!empty($hero['text']))
             <p class="mt-4 text-white text-md-regular">
               {{ $hero['text'] }}
             </p>
+          @endif
+
+          @if(!empty($hero['tagText']))
+            <x-button href="{{ home_url('/kontakt') }}" variant="primary" size="sm" class="!bg-orange-300 rounded-xs text-xs-bold px-[8px] py-2 mt-4 w-full lg:w-auto">
+              {{ $hero['tagText'] }}
+              <x-slot:rightIcon>
+                <x-icon.phone/>
+              </x-slot:rightIcon>
+            </x-button>
           @endif
 
           @if(!empty($hero['tagText']))
@@ -27,76 +42,59 @@
           @endif
 
         </div>
-  
+
         <div class="lg:justify-self-end">
-          @if(!empty($hero['image']))
-            @php
-              // ACF image może być tablicą (url/alt) albo ID – obsługujemy oba
-              $imgUrl = is_array($hero['image']) ? ($hero['image']['url'] ?? '') : '';
-              $imgAlt = is_array($hero['image']) ? ($hero['image']['alt'] ?? '') : '';
-  
-              if (!$imgUrl && is_numeric($hero['image'])) {
-                $imgUrl = wp_get_attachment_image_url((int) $hero['image'], 'full') ?: '';
-                $imgAlt = get_post_meta((int) $hero['image'], '_wp_attachment_image_alt', true) ?: '';
-              }
-            @endphp
-  
-            @if($imgUrl)
-              <img
-                src="{{ $imgUrl }}"
-                alt="{{ $imgAlt }}"
-                class="w-full  max-h-[325px] object-cover lg:min-w-[640px]"
-                loading="eager"
-              >
-            @endif
+          @if(!empty($hero['image']['url']))
+            <img
+              src="{{ $hero['image']['url'] }}"
+              alt="{{ $hero['image']['alt'] ?? '' }}"
+              class="w-full max-h-[325px] object-cover lg:min-w-[640px]"
+              loading="eager"
+            >
           @endif
         </div>
-  
+
       </div>
     </div>
   </section>
-  <section class="w-full bg-primary-400 pb-4">
-    <div class="flex flex-col lg:flex-row max-w-[1600px] mx-auto">
-      <div class="flex flex-col max-h-[325px] overflow-hidden">
-          @if(!empty($hero['below']['bgUrl']))
-            <img
-              src="{{ $hero['below']['bgUrl'] }}"
-              alt="{{ $hero['below']['bgAlt'] ?? '' }}"
-              class="w-full object-contain  flex-1 min-h-0 bg-orange-300"
-              loading="lazy"
-              decoding="async"
-            >
-          @endif
-        
-          <div class="w-full px-4 pb-[16px] bg-orange-300 shrink-0">
-            @if(!empty($hero['below']['text']))
-              <p class="text-black text-xs-regular">
-                {{ $hero['below']['text'] }}
-              </p>
-            @endif
-          </div>
-      </div>  
-      @if(!empty($hero['below']['benefits']))
-      <div class="grid md:grid-cols-3">
-          @foreach($hero['below']['benefits'] as $item)
-          <div class="flex justify-between flex-col p-6 bg-[#E5E7EB] h-[325px] nth-2:bg-[#F9FAFB] ">
-              <div class="flex justify-between">
-                  <div class="display-lg-regular">{{ $item['number'] }}</div>
-                  @if(!empty($item['icon']['url']))
-                  <img
-                      src="{{ $item['icon']['url'] }}"
-                      alt="{{ $item['icon']['alt'] ?? '' }}"
-                      class="mb-4 h-[120px] w-[120px]"
-                  >
-              @endif
-              </div>
-              <div>
-                  <div class="mt-2 display-sm-regular">{{ $item['title'] }}</div>
-                  <p class="mt-4 text-xs-regular">{{ $item['text'] }}</p>
-              </div>
-          </div>
-          @endforeach
+
+  {{-- Panel statystyk --}}
+  <section class="w-full bg-[#F3F4F6]">
+    <div class="max-w-[1600px] mx-auto px-4 py-6 lg:px-[80px] lg:py-12">
+
+      {{-- Górny wiersz: cytat + opis --}}
+      <div class="grid gap-5 lg:grid-cols-2 mb-8 lg:mb-12">
+        <p class="display-sm-regular text-black">
+          Zanim powstał Akorn, zdobywaliśmy doświadczenie tam, gdzie liczy się każdy piksel i każda złotówka klienta.
+        </p>
+        <p class="text-md-regular">
+          Nasz zespół ma za sobą lata pracy przy projektach dla agencji i klientów z różnych branż. Tę wiedzę — przetestowaną na dziesiątkach projektów — teraz wkładamy w każdy projekt Akorn
+        </p>
       </div>
-      @endif
+
+      {{-- Dolny wiersz: 4 statystyki --}}
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+
+        <div class="flex flex-col items-baseline gap-3  lg:items-start">
+          <span class="display-lg-regular text-orange-300">60+</span>
+          <span class="text-md-regular text-black">Projektów w portfolio zespołu</span>
+        </div>
+
+        <div class="flex flex-col items-baseline gap-3  lg:items-start">
+          <span class="display-lg-regular text-orange-300">5+ Lat</span>
+          <span class="text-md-regular text-black">Doświadczenia w branży digital</span>
+        </div>
+
+        <div class="flex flex-col items-baseline gap-3  lg:items-start">
+          <span class="display-lg-regular text-orange-300">20+</span>
+          <span class="text-md-regular text-black">Branż, z którymi pracowaliśmy</span>
+        </div>
+
+        <div class="flex flex-col items-baseline gap-3  lg:items-start">
+          <span class="display-lg-regular text-orange-300">4w1</span>
+          <span class="text-md-regular text-black">Strategia, design, development i SEO — bez outsource'ingu</span>
+        </div>
+
+      </div>
     </div>
   </section>

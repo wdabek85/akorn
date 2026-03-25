@@ -25,5 +25,26 @@ export function initMobileMenu() {
     toggle.addEventListener('click', open);
     closeEls.forEach(el => el.addEventListener('click', close));
     document.addEventListener('keydown', (e) => e.key === 'Escape' && close());
+
+    // Mobile accordion (usługi submenu)
+    drawer.querySelectorAll('[data-mobile-accordion]').forEach((item) => {
+      const trigger = item.querySelector('[data-mobile-accordion-trigger]');
+      const content = item.querySelector('[data-mobile-accordion-content]');
+      const chevron = item.querySelector('[data-mobile-accordion-chevron]');
+
+      if (!trigger || !content) return;
+
+      trigger.addEventListener('click', () => {
+        const isOpen = content.style.height !== '0px';
+
+        if (isOpen) {
+          content.style.height = '0';
+          if (chevron) chevron.classList.remove('rotate-180');
+        } else {
+          content.style.height = content.scrollHeight + 'px';
+          if (chevron) chevron.classList.add('rotate-180');
+        }
+      });
+    });
   }
   

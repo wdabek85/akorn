@@ -1,0 +1,91 @@
+{
+    "key": "group_uslugi",
+    "title": "Usługi",
+    "fields": [
+        {
+            "key": "field_uslugi_heading",
+            "label": "Nagłówek",
+            "name": "uslugi_heading",
+            "type": "text",
+            "required": 0,
+            "default_value": "Kompletny system wzrostu online"
+        },
+        {
+            "key": "field_uslugi_description",
+            "label": "Opis",
+            "name": "uslugi_description",
+            "type": "textarea",
+            "required": 0,
+            "rows": 4,
+            "default_value": ""
+        },
+        {
+            "key": "field_uslugi_cta_text",
+            "label": "CTA — tekst",
+            "name": "uslugi_cta_text",
+            "type": "text",
+            "required": 0,
+            "default_value": "Umów konsultację"
+        },
+        {
+            "key": "field_uslugi_cta_link",
+            "label": "CTA — link",
+            "name": "uslugi_cta_link",
+            "type": "url",
+            "required": 0,
+            "default_value": ""
+        },
+        {
+            "key": "field_uslugi_items",
+            "label": "Usługi",
+            "name": "uslugi_items",
+            "type": "repeater",
+            "required": 0,
+            "min": 0,
+            "max": 0,
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_uslugi_item_title",
+                    "label": "Tytuł",
+                    "name": "title",
+                    "type": "text",
+                    "required": 1
+                },
+                {
+                    "key": "field_uslugi_item_description",
+                    "label": "Opis",
+                    "name": "description",
+                    "type": "textarea",
+                    "required": 0,
+                    "rows": 3
+                },
+                {
+                    "key": "field_uslugi_item_link",
+                    "label": "Link do podstrony",
+                    "name": "link",
+                    "type": "url",
+                    "required": 0
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_type",
+                "operator": "==",
+                "value": "front_page"
+            }
+        ]
+    ],
+    "menu_order": 1,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Sekcja usług z akordeonem na stronie głównej",
+    "show_in_rest": 0
+}
