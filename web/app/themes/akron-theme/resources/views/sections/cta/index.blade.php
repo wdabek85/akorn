@@ -4,7 +4,7 @@
     {{-- Logo + tekst --}}
     <div class="flex flex-col items-center gap-4 w-full text-center">
       <img
-        src="{{ Vite::asset('resources/images/logo.svg') }}"
+        src="{{ get_theme_file_uri('resources/images/logo.svg') }}"
         alt="Akorn"
         class="h-8 w-auto"
       >

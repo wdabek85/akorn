@@ -24,7 +24,7 @@
     <div class="lg:flex-1">
       <div class="relative h-[478px] overflow-hidden rounded-l bg-[#F2F2F2]">
         <img
-          src="{{ Vite::asset('resources/images/about-hero.jpg') }}"
+          src="{{ get_theme_file_uri('resources/images/about-hero.jpg') }}"
           alt="Zespół Akorn"
           class="absolute inset-0 w-full h-full object-cover"
           loading="eager"

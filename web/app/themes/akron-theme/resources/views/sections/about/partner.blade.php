@@ -14,7 +14,7 @@
     {{-- Prawa: zdjęcie --}}
     <div class="relative h-[280px] lg:w-[350px] lg:shrink-0 overflow-hidden rounded-l">
       <img
-        src="{{ Vite::asset('resources/images/about-partner.jpg') }}"
+        src="{{ get_theme_file_uri('resources/images/about-partner.jpg') }}"
         alt="Zespół Akorn"
         class="absolute inset-0 w-full h-full object-cover"
         loading="lazy"

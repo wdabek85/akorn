@@ -62,7 +62,7 @@
             {{-- Zdjęcie — desktop przy kroku 2 --}}
             <div class="hidden lg:block h-[240px] rounded overflow-hidden">
               <img
-                src="{{ Vite::asset('resources/images/jak-dzialamy.png') }}"
+                src="{{ get_theme_file_uri('resources/images/jak-dzialamy.png') }}"
                 alt="Proces pracy Akorn"
                 class="w-full h-full object-cover rounded"
                 loading="lazy"
@@ -88,7 +88,7 @@
             {{-- Zdjęcie — mobile przy kroku 3 --}}
             <div class="lg:hidden h-[160px] rounded overflow-hidden">
               <img
-                src="{{ Vite::asset('resources/images/jak-dzialamy.png') }}"
+                src="{{ get_theme_file_uri('resources/images/jak-dzialamy.png') }}"
                 alt="Proces pracy Akorn"
                 class="w-full h-full object-cover rounded"
                 loading="lazy"

@@ -7,7 +7,7 @@
       {{-- Kolumna 1: Logo + opis --}}
       <div class="flex flex-col gap-4 lg:flex-1">
         <img
-          src="{{ Vite::asset('resources/images/logo.svg') }}"
+          src="{{ get_theme_file_uri('resources/images/logo.svg') }}"
           alt="Akorn"
           class="h-8 w-[93px] invert"
         >

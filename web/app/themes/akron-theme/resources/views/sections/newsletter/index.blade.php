@@ -59,7 +59,7 @@
       {{-- Prawa kolumna: zdjęcie --}}
       <div class="shrink-0 size-[250px] lg:size-[325px]">
         <img
-          src="{{ Vite::asset('resources/images/newsletter.png') }}"
+          src="{{ get_theme_file_uri('resources/images/newsletter.png') }}"
           alt="Newsletter Akorn"
           class="w-full h-full object-cover"
           loading="lazy"

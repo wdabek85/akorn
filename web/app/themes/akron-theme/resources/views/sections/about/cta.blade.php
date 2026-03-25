@@ -25,7 +25,7 @@
     {{-- Prawa: zdjęcie --}}
     <div class="shrink-0 size-[250px] lg:size-[325px]">
       <img
-        src="{{ Vite::asset('resources/images/about-cta.png') }}"
+        src="{{ get_theme_file_uri('resources/images/about-cta.png') }}"
         alt="Konsultacja Akorn"
         class="w-full h-full object-cover"
         loading="lazy"
