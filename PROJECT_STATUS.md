@@ -6,6 +6,33 @@
 - Tailwind CSS 4 + Vite 6
 - ACF Pro
 - Rank Math SEO (breadcrumby)
+- PHP 8.3+ (staging), PHP 8.4 (local)
+
+## Środowiska
+| Env | URL | Repo |
+|-----|-----|------|
+| Local | `http://akorn.local` | `E:/LocalSites/akorn/app/akorn` |
+| Staging | `https://wdb-creative.pl` | SSH: `wiktor1249@wiktor1249.ssh.dhosting.pl` → `wdb-creative.pl/bedrock/` |
+| GitHub | — | `https://github.com/wdabek85/akorn.git` (branch: main) |
+
+### Deploy na staging
+```bash
+ssh wiktor1249@wiktor1249.ssh.dhosting.pl
+cd wdb-creative.pl/bedrock
+git pull origin main
+php83 ~/composer.phar install --no-dev
+cd web/app/themes/akron-theme
+php83 ~/composer.phar install --no-dev --ignore-platform-req=php
+npm install && npm run build
+```
+
+### Uwagi staging
+- PHP www: 8.3 (ustawione przez hosting)
+- Theme composer: `--ignore-platform-req=php` (lock wymaga 8.4, serwer ma 8.3)
+- `.htaccess` w `public_html/` zawiera basic auth (user: wiktor, pass: staging2026)
+- Symlinki: `public_html/app` → `bedrock/web/app`, `public_html/wp` → `bedrock/web/wp`
+- `wp-config.php` w `public_html/` — ścieżki do `bedrock/vendor/` i `bedrock/config/`
+- Obrazy: `get_theme_file_uri()` zamiast `Vite::asset()` (Vite nie przetwarza images)
 
 ---
 
@@ -14,112 +41,134 @@
 ### Blade Components
 | Komponent | Plik | Opis |
 |-----------|------|------|
-| `<x-button>` | `components/button.blade.php` | Przycisk/link z wariantami (primary/secondary), rozmiarami (sm/md/lg), slotami na ikony (leftIcon/rightIcon) |
+| `<x-button>` | `components/button.blade.php` | Przycisk/link z wariantami (primary/secondary), rozmiarami (sm/md/lg), slotami na ikony |
 | `<x-alert>` | `components/alert.blade.php` | Alert z wariantami (success/caution/warning) |
-| `<x-blog-posts>` | `components/blog-posts.blade.php` | Reużywalny blok postów z propsami (category, count, heading, label, description, exclude). Auto reading time. |
-| `<x-icon.arrow-down>` | `components/icon/arrow-down.blade.php` | SVG strzałka w dół |
-| `<x-icon.arrow-circle-right>` | `components/icon/arrow-circle-right.blade.php` | SVG strzałka w kole |
-| `<x-icon.chevron-right>` | `components/icon/chevron-right.blade.php` | SVG chevron prawo |
-| `<x-icon.chevron-up>` | `components/icon/chevron-up.blade.php` | SVG chevron góra |
-| `<x-icon.diamond>` | `components/icon/diamond.blade.php` | SVG diament (timeline) |
-| `<x-icon.document>` | `components/icon/document.blade.php` | SVG dokument |
-| `<x-icon.hamburger>` | `components/icon/hamburger.blade.php` | SVG hamburger menu |
-| `<x-icon.location>` | `components/icon/location.blade.php` | SVG lokalizacja |
-| `<x-icon.mail>` | `components/icon/mail.blade.php` | SVG koperta |
-| `<x-icon.minus-circle>` | `components/icon/minus-circle.blade.php` | SVG minus w kole |
-| `<x-icon.phone>` | `components/icon/phone.blade.php` | SVG telefon |
-| `<x-icon.plus-circle>` | `components/icon/plus-circle.blade.php` | SVG plus w kole |
-| `<x-icon.support>` | `components/icon/support.blade.php` | SVG support |
+| `<x-blog-posts>` | `components/blog-posts.blade.php` | Reużywalny blok postów (propsy: category, count, heading, label, description, exclude). Auto reading time |
+| `<x-icon.*>` | `components/icon/*.blade.php` | SVG ikony: arrow-down, arrow-circle-right, chevron-down, chevron-right, chevron-up, diamond, document, hamburger, location, mail, minus-circle, phone, plus-circle, support |
 
 ### Sekcje (reużywalne)
 | Sekcja | Plik | Typ | Opis |
 |--------|------|-----|------|
-| Header | `sections/header/` | Layout | Top bar, nav bar, mobile menu drawer |
-| Footer | `sections/footer/index.blade.php` | Layout | 4 kolumny (logo+opis, dane formalne, kontakt, usługi), dolny pasek copyright |
-| Hero | `sections/hero/index.blade.php` | ACF | Breadcrumby (Rank Math), tytuł, opis, CTA, obraz + panel statystyk hardcoded |
-| Usługi | `sections/uslugi/index.blade.php` | ACF | Akordeon usług z CTA. Composer: `Uslugi.php` |
-| Portfolio | `sections/portfolio/index.blade.php` | ACF | Rozwijane projekty z animacją zdjęcia. Composer: `Portfolio.php` |
-| Jak działamy | `sections/jak-dzialamy/index.blade.php` | Hardcode | Timeline 4 kroków + CTA |
-| Benefits | `sections/benefits/index.blade.php` | ACF | Karty z kolorami tła, reużywalne na stronach. Composer: `Benefits.php` |
-| Opinie | `sections/opinie/index.blade.php` | ACF Options | Slider opinii, globalne dane. Composer: `Opinie.php` |
-| CTA | `sections/cta/index.blade.php` | Hardcode | Banner CTA z logo, reużywalny |
+| Header | `sections/header/` | Layout | Top bar, nav bar, mega menu (ACF Options), mobile drawer |
+| Footer | `sections/footer/index.blade.php` | Hardcode | 4 kolumny (dane, kontakt, usługi), copyright |
+| Hero (główna) | `sections/hero/index.blade.php` | ACF | Breadcrumby, tytuł, opis, CTA, obraz + panel statystyk |
+| Page Hero | `sections/page-hero/index.blade.php` | ACF | Hero podstron (tytuł, opis, 2 panele zdjęć) |
+| Usługi | `sections/uslugi/index.blade.php` | ACF | Akordeon usług z CTA |
+| Usługi Grid | `sections/uslugi-grid/` | Hardcode | 6 kart usług (2 warianty: white/orange), `card.blade.php` |
+| Portfolio | `sections/portfolio/index.blade.php` | ACF | Rozwijane projekty z animacją zdjęcia |
+| Jak działamy | `sections/jak-dzialamy/index.blade.php` | Hardcode | Timeline pionowy 4 kroków + CTA + zdjęcie |
+| Proces | `sections/proces/index.blade.php` | Hardcode | 4 kroki horyzontalnie (desktop) / pionowo z linią (mobile) |
+| Benefits | `sections/benefits/` | ACF / FC | Karty z 2 wariantami (`default` / `features`), `card.blade.php` |
+| Opinie | `sections/opinie/index.blade.php` | ACF Options | Slider opinii z drag-scroll |
+| CTA | `sections/cta/index.blade.php` | Hardcode | Banner z logo |
 | Newsletter | `sections/newsletter/index.blade.php` | Hardcode | Formularz email, tło w containerze |
-| Kontakt | `sections/kontakt/index.blade.php` | Hardcode | Dane kontaktowe + formularz (front-end only) |
+| Kontakt | `sections/kontakt/index.blade.php` | Hardcode | Dane kontaktowe + formularz AJAX |
+| Stats | `sections/stats/index.blade.php` | FC | Statystyki z wykresami (3 kolumny rosnącej wysokości) |
+| Platforms | `sections/platforms/index.blade.php` | FC | Grid logotypów platform |
+| Highlights | `sections/highlights/index.blade.php` | FC | Punkty z opisem + zdjęcie |
+| Flexible | `sections/flexible/` | FC | Router Flexible Content (switch po layoutach) |
+
+### Sekcje O nas
+| Sekcja | Plik | Typ |
+|--------|------|-----|
+| Hero | `sections/about/hero.blade.php` | Hardcode |
+| Story | `sections/about/story.blade.php` | Hardcode |
+| Stats | `sections/about/stats.blade.php` | ACF |
+| Honesty | `sections/about/honesty.blade.php` | Hardcode |
+| Partner | `sections/about/partner.blade.php` | Hardcode |
+| CTA | `sections/about/cta.blade.php` | Hardcode |
+
+### Mega Menu
+| Element | Źródło |
+|---------|--------|
+| Główne linki (Strona główna, Portfolio, Blog, Kontakt) | WP Admin → Wygląd → Menu (Primary Navigation) |
+| Usługi dropdown (opisy, zdjęcia, hover preview) | WP Admin → Mega Menu (ACF Options Page) |
+| Mobile akordeon usług | Automatycznie z ACF Options |
+| Rozpoznanie itemu "Usługi" | `str_contains(strtolower($item['title']), 'usług')` |
 
 ### View Composers
 | Composer | Widoki | Dane |
 |----------|--------|------|
-| `App.php` | `*` (wszystkie) | `siteName` |
-| `Hero.php` | `sections.hero.index` | `hero` (title, text, tagText, image url/alt) |
+| `App.php` | `*` | `siteName` |
+| `Hero.php` | `sections.hero.index` | `hero` (title, text, tagText, image) |
 | `Uslugi.php` | `sections.uslugi.index` | `uslugi` (heading, description, ctaText, ctaLink, items[]) |
-| `Portfolio.php` | `sections.portfolio.index` | `portfolio` (label, heading, items[] z image/description/link) |
-| `Benefits.php` | `sections.benefits.index` | `benefits` (label, heading, items[] z icon/title/description/bgColor/bgImage) |
-| `Opinie.php` | `sections.opinie.index` | `opinie` (heading, description, items[] z image/quote/author/videoUrl) — z ACF Options |
-| `Post.php` | `partials.page-header`, `partials.content*` | `title`, `pagination` |
-| `Comments.php` | `partials.comments` | `title`, `responses`, `previous`, `next`, `paginated`, `closed` |
-
-### CSS Design Tokens
-| Plik | Opis |
-|------|------|
-| `base/color.css` | Paleta: primary (100-500), blue (100-500), orange (100-500) |
-| `base/typography.css` | Skala typografii: display-lg/md/sm/xs, text-xl/md/sm/xs + klasy wag |
-| `components/menu.css` | Separator menu (.primary-menu li.menu-sep-before) |
+| `Portfolio.php` | `sections.portfolio.index` | `portfolio` (label, heading, items[]) |
+| `Benefits.php` | `sections.benefits.index` | `benefits` (label, heading, description, variant, items[]) |
+| `Opinie.php` | `sections.opinie.index` | `opinie` (heading, description, items[]) — ACF Options |
+| `Navigation.php` | `sections.header.*` | `menuItems` (z wp_nav_menu), `menuServices` (ACF Options) |
+| `PageHero.php` | `sections.page-hero.index` | `pageHero` (title, description, images, captions) |
+| `PageSections.php` | `sections.flexible.index` | `flexSections` (Flexible Content layouts) |
+| `AboutStats.php` | `sections.about.stats` | `aboutStats` (repeater: value, label, link) |
+| `Post.php` | `partials.*` | `title`, `pagination` |
+| `Comments.php` | `partials.comments` | comments data |
 
 ### JS Moduły
 | Moduł | Opis |
 |-------|------|
-| `components/mobile-menu.js` | Toggle mobile menu (drawer, overlay, escape, aria) |
-| `components/accordion.js` | Akordeon (sekcja usługi) — jeden otwarty, animacja height |
-| `components/portfolio.js` | Portfolio toggle — animacja width/opacity zdjęcia |
-| `components/drag-scroll.js` | Drag-to-scroll na desktop (sekcja opinie) |
-| `utils/domReady.js` | Utility: DOM ready handler |
-| `bootstrap/assets.js` | Glob import images/fonts |
+| `mobile-menu.js` | Toggle mobile menu + akordeon usług |
+| `accordion.js` | Akordeon (sekcja usługi) |
+| `portfolio.js` | Portfolio toggle z animacją width/height |
+| `drag-scroll.js` | Drag-to-scroll na desktop (opinie slider) |
+| `mega-menu.js` | Hover mega menu z preview zdjęciem |
+| `forms.js` | AJAX submit formularzy (kontakt + newsletter) |
+
+### Backend formularzy
+| Handler | Endpoint | Zabezpieczenia |
+|---------|----------|----------------|
+| `akorn_contact` | `admin-ajax.php` | Nonce, honeypot, rate limit (5/h per IP), sanitization, walidacja |
+| `akorn_newsletter` | `admin-ajax.php` | Nonce, honeypot, rate limit (3/h per IP), sanitization |
 
 ### ACF Field Groups
-| Grupa | Pola | Lokalizacja |
-|-------|------|-------------|
-| Main-Hero | `hero-tiitle`, `hero-desc`, `hero-tag-text`, `hero-img` | Front page |
-| Usługi | `uslugi_heading`, `uslugi_description`, `uslugi_cta_text`, `uslugi_cta_link`, `uslugi_items` (repeater) | Front page |
-| Portfolio | `portfolio_label`, `portfolio_heading`, `portfolio_items` (repeater: title, description, image, link) | Front page |
-| Benefits | `benefits_label`, `benefits_heading`, `benefits_items` (repeater: icon, title, description, bg_color, bg_image) | All pages |
-| Opinie klientów | `opinie_heading`, `opinie_description`, `opinie_items` (repeater: image, quote, author, video_url) | ACF Options Page |
+| Grupa | Lokalizacja | Pola |
+|-------|-------------|------|
+| Main-Hero | Front page | hero-tiitle, hero-desc, hero-tag-text, hero-img |
+| Usługi | Front page | uslugi_heading, uslugi_description, uslugi_cta_*, uslugi_items (repeater) |
+| Portfolio | Front page | portfolio_label, portfolio_heading, portfolio_items (repeater) |
+| Benefits | Front page, template-uslugi, template-usluga, template-o-nas | benefits_label, benefits_heading, benefits_items (repeater z wariantami kolorów) |
+| Statystyki O nas | template-o-nas | about_stats_items (repeater: value, label, link) |
+| Hero Podstrony | template-uslugi, template-usluga | page_hero_title, page_hero_description, images, captions |
+| Sekcje strony (FC) | template-usluga | Flexible Content: benefits, opinie, cta, kontakt, newsletter, proces, uslugi_grid, blog, stats, platforms, highlights |
 
 ### ACF Options Pages
-| Strona | Menu slug | Opis |
-|--------|-----------|------|
-| Opinie klientów | `opinie-klientow` | Globalne opinie — wyświetlane przez komponent na dowolnej stronie |
+| Strona | Slug | Opis |
+|--------|------|------|
+| Opinie klientów | `opinie-klientow` | Globalne opinie (image, quote, author, video_url) |
+| Mega Menu | `mega-menu` | Usługi w nawigacji (title, subtitle, description, url, image) |
 
 ### Szablony stron
-| Szablon | Status | Opis |
-|---------|--------|------|
-| `front-page.blade.php` | ✅ Gotowy | Hero, usługi, portfolio, jak działamy, benefits, opinie, CTA, blog, newsletter, kontakt |
-| `page.blade.php` | ✅ Bazowy | Podstrona |
-| `single.blade.php` | ✅ Bazowy | Single post |
-| `index.blade.php` | ✅ Bazowy | Lista postów |
-| `search.blade.php` | ✅ Bazowy | Wyniki wyszukiwania |
-| `404.blade.php` | ✅ Bazowy | Strona 404 |
+| Szablon | Plik | Sekcje |
+|---------|------|--------|
+| Strona główna | `front-page.blade.php` | Hero, usługi, portfolio, jak-działamy, benefits, opinie, CTA, blog, newsletter, kontakt |
+| Usługi (zbiorcza) | `template-uslugi.blade.php` | Page Hero, usługi-grid, proces, CTA, kontakt, newsletter |
+| Usługa (pojedyncza) | `template-usluga.blade.php` | Page Hero + Flexible Content |
+| O nas | `template-o-nas.blade.php` | About hero/story/stats, benefits, honesty, partner, CTA, kontakt |
+| Domyślna strona | `page.blade.php` | Standardowa WP |
+| Single post | `single.blade.php` | Post content |
+| Blog index | `index.blade.php` | Lista postów |
+| Szukaj | `search.blade.php` | Wyniki |
+| 404 | `404.blade.php` | Strona błędu |
 
-### Zasoby
-| Zasób | Opis |
-|-------|------|
-| `images/logo.svg` | Białe logo "Akorn" (95x24) |
-| `images/logoakorn.png` | Logo PNG |
+### CSS Design Tokens
+| Plik | Opis |
+|------|------|
+| `base/color.css` | primary (100-500), blue (100-500), orange (100-500) |
+| `base/typography.css` | display-lg/md/sm/xs, text-xl/lg/md/sm/xs + klasy wag |
+| `components/menu.css` | Separator menu |
+| `app.css` | Base: forced scrollbar, link styles, opinie scrollbar hide |
 
 ---
 
 ## W trakcie / Do zrobienia
-- [x] Przebudowa sekcji Hero (nowy design + panel statystyk)
-- [x] Breadcrumby Rank Math w hero
-- [x] Sekcja Usługi (akordeon + ACF)
-- [x] Sekcja Portfolio (rozwijane projekty + ACF)
-- [x] Sekcja Jak działamy (timeline, hardcode)
-- [x] Sekcja Benefits (karty, ACF, reużywalna)
-- [x] Sekcja Opinie (slider, ACF Options, globalna)
-- [x] Sekcja CTA (hardcode, reużywalna)
-- [x] Komponent Blog Posts (reużywalny, propsy)
-- [x] Sekcja Newsletter (hardcode)
-- [x] Sekcja Kontakt (formularz, hardcode)
-- [x] Footer (4 kolumny, hardcode)
-- [ ] Podstrona Usługi
-- [ ] Pozostałe podstrony
-- [ ] Backend formularzy (kontakt, newsletter)
+- [x] Strona główna (wszystkie sekcje)
+- [x] Mega menu (ACF Options + WP Menu)
+- [x] Backend formularzy (AJAX + zabezpieczenia)
+- [x] Podstrona Usługi (zbiorcza)
+- [x] Podstrona Usługa (pojedyncza z FC)
+- [x] Strona O nas
+- [x] Footer
+- [x] Deploy na staging (wdb-creative.pl)
+- [ ] Strona kontakt (osobna)
+- [ ] Blog (archiwum + single post design)
+- [ ] SEO (meta tagi, schema, sitemap)
+- [ ] Performance (lazy load, cache, minification)
+- [ ] Testy cross-browser

@@ -7,6 +7,7 @@ import portfolio from './components/portfolio';
 import dragScroll from './components/drag-scroll';
 import forms from './components/forms';
 import megaMenu from './components/mega-menu';
+import stickyBar from './components/sticky-bar';
 
 domReady(() => {
   initMobileMenu();
@@ -15,6 +16,7 @@ domReady(() => {
   dragScroll();
   forms();
   megaMenu();
+  stickyBar();
 });
 
 console.log('dupa');

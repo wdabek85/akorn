@@ -1,57 +1,50 @@
-<header class="w-full">
-    {{-- TOP BAR (email + tel) --}}
-    <div class="bg-zinc-100">
-      <div class="mx-auto w-full flex items-center justify-center gap-8 px-5 py-3 lg:px-[80px] items-between max-w-[1600px]">
-        <a href="mailto:kontakt@akorn.pl" class="flex items-center gap-2 text-xs-semibold">
-          {{-- icon mail --}}
-          <x-icon.mail />
-          <span>kontakt@akorn.pl</span>
-        </a>
-  
-        <a href="tel:+48884826068" class="flex items-center gap-2 text-xs-semibold">
-          {{-- icon phone --}}
-          <x-icon.phone/>
-          <span>+48 884 826 068</span>
-        </a>
-  
-        <p class="hidden lg:block flex-1 text-right text-xs-semibold">
-          Darmowa Wycena. Oraz <span class="text-blue-200">RABAT 5%</span> na pierwsze zakupy dla Zarejestrowanych użytkowników. <a href="" class="text-blue-200">Sprawdź Regulamin Promocji</a>
-        </p>
-      </div>
-    </div>
-  
-    {{-- NAV BAR (logo + kontakt + burger) --}}
-    <div class="bg-primary-400 relative" data-mega-menu>
-      <div class="mx-auto w-full flex items-center justify-between gap-4 px-5 py-3 lg:px-[80px] max-w-[1600px]">
-        <div class="flex gap-8">
-          <a href="{{ home_url('/') }}" class="text-4xl font-extrabold italic text-white">
-            <img src="{{ get_theme_file_uri('resources/images/logo.svg') }}" alt="Akorn">
-          </a>
-          @include('sections.header.desktop-menu')
-        </div>
-        <div class="flex gap-2 items-center">
-          {{-- CTA (link) --}}
-          <x-button href="{{ home_url('/kontakt') }}" variant="primary" size="lg" class="!bg-orange-300">
-            <span class="lg:hidden">Kontakt</span>
-            <span class="hidden lg:inline">Darmowa wycena</span>
-          </x-button>
-  
-          {{-- Burger --}}
-          <button
-            type="button"
-            class="grid h-12 w-12 place-items-center cursor-pointer lg:hidden"
-            data-menu-toggle
-            aria-controls="mobile-menu"
-            aria-expanded="false"
-          >
-            <x-icon.hamburger />
-          </button>
-        </div>
-      </div>
+{{-- TOP BAR (email + tel) --}}
+<div class="bg-zinc-100">
+  <div class="mx-auto w-full flex items-center justify-center gap-8 px-5 py-3 lg:px-[80px] items-between max-w-[1600px]">
+    <a href="mailto:kontakt@akorn.pl" class="flex items-center gap-2 text-xs-semibold">
+      <x-icon.mail />
+      <span>kontakt@akorn.pl</span>
+    </a>
 
-      @include('sections.header.mega-menu')
-    </div>
+    <a href="tel:+48884826068" class="flex items-center gap-2 text-xs-semibold">
+      <x-icon.phone/>
+      <span>+48 884 826 068</span>
+    </a>
 
-    @include('sections.header.mobile-menu')
-  </header>
-  
+    <p class="hidden lg:block flex-1 text-right text-xs-semibold">
+      Darmowa Wycena. Oraz <span class="text-blue-200">RABAT 5%</span> na pierwsze zakupy dla Zarejestrowanych użytkowników. <a href="" class="text-blue-200">Sprawdź Regulamin Promocji</a>
+    </p>
+  </div>
+</div>
+
+{{-- NAV BAR (sticky) --}}
+<div class="bg-primary-400 sticky top-0 z-40 relative" data-mega-menu>
+  <div class="mx-auto w-full flex items-center justify-between gap-4 px-5 py-3 lg:px-[80px] max-w-[1600px]">
+    <div class="flex gap-8">
+      <a href="{{ home_url('/') }}" class="text-4xl font-extrabold italic text-white">
+        <img src="{{ get_theme_file_uri('resources/images/logo.svg') }}" alt="Akorn">
+      </a>
+      @include('sections.header.desktop-menu')
+    </div>
+    <div class="flex gap-2 items-center">
+      <x-button href="{{ home_url('/kontakt') }}" variant="primary" size="lg" class="!bg-orange-300">
+        <span class="lg:hidden">Kontakt</span>
+        <span class="hidden lg:inline">Darmowa wycena</span>
+      </x-button>
+
+      <button
+        type="button"
+        class="grid h-12 w-12 place-items-center cursor-pointer lg:hidden"
+        data-menu-toggle
+        aria-controls="mobile-menu"
+        aria-expanded="false"
+      >
+        <x-icon.hamburger />
+      </button>
+    </div>
+  </div>
+
+  @include('sections.header.mega-menu')
+</div>
+
+@include('sections.header.mobile-menu')

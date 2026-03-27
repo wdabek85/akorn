@@ -4,14 +4,22 @@
   'items' => [],
   'image' => '',
   'imageCaption' => '',
+  'footnote' => '',
+  'ctaText' => '',
+  'ctaLink' => '',
+  'bg' => 'white',
 ])
 
-@if(!empty($items))
-<section class="w-full bg-white">
-  <div class="max-w-[1600px] mx-auto px-4 py-6 lg:px-[80px] lg:py-12 flex flex-col gap-10 lg:flex-row lg:gap-[80px] lg:items-center">
+@php
+  $bgClass = $bg === 'gray' ? 'bg-[#F3F4F6]' : 'bg-white';
+@endphp
 
-    {{-- Lewa kolumna: nagłówek + punkty --}}
-    <div class="flex flex-col gap-4 py-10 lg:flex-1">
+@if(!empty($items))
+<section class="w-full {{ $bgClass }}">
+  <div class="max-w-[1600px] mx-auto px-4 py-6 lg:px-[80px] lg:py-12 flex flex-col gap-8 lg:flex-row lg:gap-[80px] lg:items-center">
+
+    {{-- Lewa kolumna: nagłówek + punkty + CTA --}}
+    <div class="flex flex-col gap-6 py-10 lg:flex-1">
       @if($label)
         <p class="text-[10px] leading-3 text-black">
           {!! $label !!}
@@ -20,7 +28,7 @@
 
       <div class="flex flex-col gap-6">
         @if($heading)
-          <h2 class="text-[36px] leading-10 font-normal text-black">{{ $heading }}</h2>
+          <h2 class="display-md-medium text-black">{{ $heading }}</h2>
         @endif
 
         <div class="flex flex-col gap-6">
@@ -44,11 +52,26 @@
           @endforeach
         </div>
       </div>
+
+      @if($footnote)
+        <p class="text-sm-regular text-black">{{ $footnote }}</p>
+      @endif
+
+      @if($ctaText)
+        <x-button
+          href="{{ $ctaLink ?: home_url('/kontakt') }}"
+          variant="primary"
+          size="lg"
+          class="!bg-blue-300 w-full lg:w-auto lg:self-start"
+        >
+          {{ $ctaText }}
+        </x-button>
+      @endif
     </div>
 
     {{-- Prawa kolumna: zdjęcie --}}
     @if($image)
-      <div class="lg:flex-1">
+      <div class="lg:w-1/4 shrink-0">
         <div class="relative h-[280px] lg:h-[400px] overflow-hidden bg-primary-400">
           <img
             src="{{ $image }}"

@@ -159,10 +159,127 @@
                     "min": "",
                     "max": "1"
                 },
+                "layout_text_columns": {
+                    "key": "layout_text_columns",
+                    "name": "text_columns",
+                    "label": "Tekst dwukolumnowy",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_fc_tc_heading",
+                            "label": "Nagłówek (lewa kolumna)",
+                            "name": "heading",
+                            "type": "text",
+                            "required": 0
+                        },
+                        {
+                            "key": "field_fc_tc_content",
+                            "label": "Treść (prawa kolumna)",
+                            "name": "content",
+                            "type": "wysiwyg",
+                            "required": 0,
+                            "tabs": "all",
+                            "toolbar": "basic",
+                            "media_upload": 0
+                        },
+                        {
+                            "key": "field_fc_tc_bg",
+                            "label": "Tło",
+                            "name": "bg",
+                            "type": "select",
+                            "required": 0,
+                            "choices": {
+                                "white": "Białe",
+                                "gray": "Szare"
+                            },
+                            "default_value": "white"
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_service_cards": {
+                    "key": "layout_service_cards",
+                    "name": "service_cards",
+                    "label": "Karty usług (z opisem zawiera)",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_fc_sc_heading",
+                            "label": "Nagłówek",
+                            "name": "heading",
+                            "type": "text",
+                            "required": 0
+                        },
+                        {
+                            "key": "field_fc_sc_description",
+                            "label": "Opis",
+                            "name": "description",
+                            "type": "textarea",
+                            "required": 0,
+                            "rows": 2
+                        },
+                        {
+                            "key": "field_fc_sc_items",
+                            "label": "Karty",
+                            "name": "items",
+                            "type": "repeater",
+                            "required": 0,
+                            "min": 0,
+                            "max": 8,
+                            "layout": "block",
+                            "sub_fields": [
+                                {
+                                    "key": "field_fc_sc_item_title",
+                                    "label": "Tytuł",
+                                    "name": "title",
+                                    "type": "text",
+                                    "required": 1
+                                },
+                                {
+                                    "key": "field_fc_sc_item_description",
+                                    "label": "Opis",
+                                    "name": "description",
+                                    "type": "textarea",
+                                    "required": 0,
+                                    "rows": 3
+                                },
+                                {
+                                    "key": "field_fc_sc_item_contains",
+                                    "label": "Zawiera (lista po przecinku)",
+                                    "name": "contains",
+                                    "type": "text",
+                                    "required": 0
+                                },
+                                {
+                                    "key": "field_fc_sc_item_link",
+                                    "label": "Link",
+                                    "name": "link",
+                                    "type": "url",
+                                    "required": 0
+                                },
+                                {
+                                    "key": "field_fc_sc_item_variant",
+                                    "label": "Wariant",
+                                    "name": "variant",
+                                    "type": "select",
+                                    "required": 0,
+                                    "choices": {
+                                        "white": "Biały",
+                                        "orange": "Pomarańczowy"
+                                    },
+                                    "default_value": "white"
+                                }
+                            ]
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
                 "layout_uslugi_grid": {
                     "key": "layout_uslugi_grid",
                     "name": "uslugi_grid",
-                    "label": "Grid usług",
+                    "label": "Grid usług (strona zbiorcza)",
                     "display": "block",
                     "sub_fields": [],
                     "min": "",
@@ -187,6 +304,40 @@
                             "label": "Nagłówek",
                             "name": "heading",
                             "type": "text",
+                            "required": 0
+                        },
+                        {
+                            "key": "field_fc_highlights_bg",
+                            "label": "Tło",
+                            "name": "bg",
+                            "type": "select",
+                            "required": 0,
+                            "choices": {
+                                "white": "Białe",
+                                "gray": "Szare"
+                            },
+                            "default_value": "white"
+                        },
+                        {
+                            "key": "field_fc_highlights_footnote",
+                            "label": "Tekst pod punktami",
+                            "name": "footnote",
+                            "type": "textarea",
+                            "required": 0,
+                            "rows": 2
+                        },
+                        {
+                            "key": "field_fc_highlights_cta_text",
+                            "label": "CTA tekst",
+                            "name": "cta_text",
+                            "type": "text",
+                            "required": 0
+                        },
+                        {
+                            "key": "field_fc_highlights_cta_link",
+                            "label": "CTA link",
+                            "name": "cta_link",
+                            "type": "url",
                             "required": 0
                         },
                         {

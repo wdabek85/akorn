@@ -1,9 +1,11 @@
 @props([
   'title' => '',
   'description' => '',
+  'contains' => '',
   'href' => '#',
   'number' => '01',
   'variant' => 'white',
+  'showNumber' => true,
 ])
 
 @php
@@ -14,7 +16,7 @@
   $numberColor = $isOrange ? 'text-white' : 'text-black';
 @endphp
 
-<div class="flex flex-col gap-4 justify-between h-[340px] overflow-hidden p-4 flex-1 {{ $bg }}">
+<div class="flex flex-col justify-between overflow-hidden p-4 flex-1 {{ $bg }} {{ $showNumber ? 'h-[340px]' : '' }}">
   <div class="flex flex-col gap-12">
     {{-- Tytuł + ikona --}}
     <div class="flex items-start justify-between gap-6">
@@ -22,13 +24,20 @@
       <x-icon.diamond class="size-10 shrink-0 {{ $isOrange ? '[&_rect]:fill-white/10 [&_path]:fill-white [&_path]:stroke-white' : '' }}" />
     </div>
 
-    {{-- Opis --}}
-    @if($description)
-      <p class="text-sm-regular {{ $textColor }}">{{ $description }}</p>
-    @endif
+    {{-- Opis + Zawiera --}}
+    <div class="flex flex-col gap-4">
+      @if($description)
+        <p class="text-sm-regular {{ $textColor }}">{{ $description }}</p>
+      @endif
+      @if($contains)
+        <p class="text-sm-regular {{ $textColor }}">
+          <span class="font-bold">Zawiera:</span> {{ $contains }}
+        </p>
+      @endif
+    </div>
   </div>
 
-  <div class="flex flex-col gap-0">
+  <div class="flex flex-col gap-0 mt-4">
     {{-- CTA --}}
     <a
       href="{{ $href }}"
@@ -38,7 +47,9 @@
       <x-icon.arrow-circle-right class="size-[18px]" />
     </a>
 
-    {{-- Numer --}}
-    <span class="text-[120px] leading-[130px] font-normal {{ $numberColor }}">{{ $number }}</span>
+    {{-- Numer (opcjonalny) --}}
+    @if($showNumber)
+      <span class="text-[120px] leading-[130px] font-normal {{ $numberColor }}">{{ $number }}</span>
+    @endif
   </div>
 </div>

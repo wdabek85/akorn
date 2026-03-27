@@ -1,4 +1,4 @@
-<section class="w-full bg-white">
+<section class="w-full bg-white" data-page-hero>
   <div class="max-w-[1600px] mx-auto px-5 lg:px-[80px] flex flex-col gap-10 lg:flex-row lg:items-center lg:gap-[80px]">
 
     {{-- Lewa kolumna: breadcrumby + tytuł + opis --}}
@@ -29,7 +29,7 @@
     <div class="flex flex-col lg:flex-row lg:flex-1">
 
       {{-- Panel lewy — zdjęcie z nakładką --}}
-      <div class="relative flex flex-col justify-between h-[478px] lg:w-[240px] rounded-l overflow-hidden p-5">
+      <div class="relative flex flex-col justify-between h-[478px] lg:w-[240px] overflow-hidden p-5">
         <div class="absolute inset-0 bg-[#F2F2F2]"></div>
 
         @if(!empty($pageHero['imageLeft']['url']))
@@ -56,7 +56,7 @@
       </div>
 
       {{-- Panel prawy — pełne zdjęcie --}}
-      <div class="relative flex flex-col justify-end h-[478px] lg:flex-1 rounded-r overflow-hidden p-5">
+      <div class="relative flex flex-col justify-end h-[478px] lg:flex-1 overflow-hidden p-5">
         @if(!empty($pageHero['imageRight']['url']))
           <img
             src="{{ $pageHero['imageRight']['url'] }}"

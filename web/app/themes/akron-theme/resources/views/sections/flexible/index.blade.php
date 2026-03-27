@@ -26,6 +26,14 @@
         @include('sections.proces.index')
         @break
 
+      @case('text_columns')
+        @include('sections.flexible.text-columns', ['data' => $section])
+        @break
+
+      @case('service_cards')
+        @include('sections.flexible.service-cards', ['data' => $section])
+        @break
+
       @case('uslugi_grid')
         @include('sections.uslugi-grid.index')
         @break
@@ -36,6 +44,10 @@
           'heading' => $section['heading'] ?? '',
           'image' => $section['image'] ?? '',
           'imageCaption' => $section['image_caption'] ?? '',
+          'footnote' => $section['footnote'] ?? '',
+          'ctaText' => $section['cta_text'] ?? '',
+          'ctaLink' => $section['cta_link'] ?? '',
+          'bg' => $section['bg'] ?? 'white',
           'items' => collect($section['items'] ?? [])->map(fn($row) => [
             'title' => $row['title'] ?? '',
             'description' => $row['description'] ?? '',
