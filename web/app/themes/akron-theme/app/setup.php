@@ -138,6 +138,44 @@ add_action('after_setup_theme', function () {
  * @return void
  */
 /**
+ * Register Custom Post Types.
+ */
+add_action('init', function () {
+    register_post_type('portfolio', [
+        'labels' => [
+            'name'               => 'Portfolio',
+            'singular_name'      => 'Realizacja',
+            'add_new'            => 'Dodaj realizację',
+            'add_new_item'       => 'Dodaj nową realizację',
+            'edit_item'          => 'Edytuj realizację',
+            'all_items'          => 'Wszystkie realizacje',
+            'search_items'       => 'Szukaj realizacji',
+            'not_found'          => 'Nie znaleziono realizacji',
+        ],
+        'public'       => true,
+        'has_archive'  => true,
+        'rewrite'      => ['slug' => 'portfolio'],
+        'menu_icon'    => 'dashicons-portfolio',
+        'menu_position' => 25,
+        'supports'     => ['title', 'editor', 'thumbnail', 'excerpt'],
+        'show_in_rest' => true,
+    ]);
+
+    register_taxonomy('portfolio_category', 'portfolio', [
+        'labels' => [
+            'name'          => 'Kategorie portfolio',
+            'singular_name' => 'Kategoria',
+            'add_new_item'  => 'Dodaj kategorię',
+            'search_items'  => 'Szukaj kategorii',
+        ],
+        'public'       => true,
+        'hierarchical' => true,
+        'rewrite'      => ['slug' => 'portfolio-kategoria'],
+        'show_in_rest' => true,
+    ]);
+});
+
+/**
  * Register ACF Options Pages.
  */
 add_action('acf/init', function () {

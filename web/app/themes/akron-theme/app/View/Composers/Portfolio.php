@@ -12,43 +12,48 @@ class Portfolio extends Composer
 
     public function with(): array
     {
-        $id = (int) get_queried_object_id();
+        // Get category filter from view data (passed from FC or template)
+        $category = $this->data->get('portfolioCategory', '');
+        $count = $this->data->get('portfolioCount', 3);
 
-        if (!$id && is_front_page()) {
-            $id = (int) get_option('page_on_front');
+        $args = [
+            'post_type'      => 'portfolio',
+            'posts_per_page' => $count,
+            'post_status'    => 'publish',
+            'orderby'        => 'date',
+            'order'          => 'DESC',
+        ];
+
+        if ($category) {
+            $args['tax_query'] = [[
+                'taxonomy' => 'portfolio_category',
+                'field'    => 'slug',
+                'terms'    => $category,
+            ]];
         }
 
-        if (!$id) {
-            $id = (int) get_the_ID();
-        }
+        $posts = get_posts($args);
 
-        $itemsRaw = get_field('portfolio_items', $id) ?: [];
+        $items = array_map(function ($post) {
+            $imgUrl = get_the_post_thumbnail_url($post->ID, 'large') ?: '';
+            $imgAlt = get_post_meta(get_post_thumbnail_id($post->ID), '_wp_attachment_image_alt', true) ?: '';
 
-        $items = array_map(function ($row) {
-            $img = $row['image'] ?? null;
-            $imgUrl = '';
-            $imgAlt = '';
-
-            if (is_array($img)) {
-                $imgUrl = $img['url'] ?? '';
-                $imgAlt = $img['alt'] ?? '';
-            } elseif (is_numeric($img)) {
-                $imgUrl = wp_get_attachment_image_url((int) $img, 'large') ?: '';
-                $imgAlt = get_post_meta((int) $img, '_wp_attachment_image_alt', true) ?: '';
-            }
+            $excerpt = has_excerpt($post->ID)
+                ? get_the_excerpt($post->ID)
+                : wp_trim_words(strip_tags($post->post_content), 30, '…');
 
             return [
-                'title'       => $row['title'] ?? '',
-                'description' => $row['description'] ?? '',
+                'title'       => html_entity_decode(get_the_title($post->ID)),
+                'description' => html_entity_decode($excerpt),
                 'image'       => ['url' => $imgUrl, 'alt' => $imgAlt],
-                'link'        => $row['link'] ?? '',
+                'link'        => get_permalink($post->ID),
             ];
-        }, $itemsRaw);
+        }, $posts);
 
         return [
             'portfolio' => [
-                'label'   => get_field('portfolio_label', $id) ?: 'Portfolio',
-                'heading' => get_field('portfolio_heading', $id) ?: '',
+                'label'   => 'Portfolio',
+                'heading' => 'Realizacje, które pokazują, jak pracujemy.',
                 'items'   => $items,
             ],
         ];

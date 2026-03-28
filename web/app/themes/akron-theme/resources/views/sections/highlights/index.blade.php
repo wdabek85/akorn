@@ -1,6 +1,7 @@
 @props([
   'label' => '',
   'heading' => '',
+  'description' => '',
   'items' => [],
   'image' => '',
   'imageCaption' => '',
@@ -29,6 +30,10 @@
       <div class="flex flex-col gap-6">
         @if($heading)
           <h2 class="display-md-medium text-black">{{ $heading }}</h2>
+        @endif
+
+        @if($description)
+          <p class="text-md-regular text-black">{!! $description !!}</p>
         @endif
 
         <div class="flex flex-col gap-6">

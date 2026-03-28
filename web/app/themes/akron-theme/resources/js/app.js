@@ -8,6 +8,7 @@ import dragScroll from './components/drag-scroll';
 import forms from './components/forms';
 import megaMenu from './components/mega-menu';
 import stickyBar from './components/sticky-bar';
+import beforeAfter from './components/before-after';
 
 domReady(() => {
   initMobileMenu();
@@ -17,6 +18,7 @@ domReady(() => {
   forms();
   megaMenu();
   stickyBar();
+  beforeAfter();
 });
 
 console.log('dupa');

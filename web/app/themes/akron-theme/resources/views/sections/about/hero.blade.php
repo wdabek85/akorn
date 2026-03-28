@@ -1,4 +1,4 @@
-<section class="w-full bg-white">
+<section class="w-full bg-[#F9FAFB]">
   <div class="max-w-[1600px] mx-auto px-4 pt-4 lg:pt-0 lg:pl-[80px] lg:pr-0 flex flex-col gap-10 lg:flex-row lg:items-center lg:gap-[80px]">
 
     {{-- Lewa kolumna: breadcrumby + tytuł + opis --}}

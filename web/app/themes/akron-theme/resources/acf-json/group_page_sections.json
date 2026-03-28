@@ -159,6 +159,108 @@
                     "min": "",
                     "max": "1"
                 },
+                "layout_portfolio": {
+                    "key": "layout_portfolio",
+                    "name": "portfolio",
+                    "label": "Portfolio (realizacje)",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_fc_portfolio_category",
+                            "label": "Kategoria (slug, puste = wszystkie)",
+                            "name": "category",
+                            "type": "text",
+                            "required": 0,
+                            "instructions": "np. strony, sklepy, seo. Puste = 3 najnowsze ze wszystkich."
+                        },
+                        {
+                            "key": "field_fc_portfolio_count",
+                            "label": "Ilość",
+                            "name": "count",
+                            "type": "number",
+                            "required": 0,
+                            "default_value": 3,
+                            "min": 1,
+                            "max": 10
+                        }
+                    ],
+                    "min": "",
+                    "max": "1"
+                },
+                "layout_before_after": {
+                    "key": "layout_before_after",
+                    "name": "before_after",
+                    "label": "Przed i Po (slider)",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_fc_ba_heading",
+                            "label": "Nagłówek",
+                            "name": "heading",
+                            "type": "text",
+                            "required": 0
+                        },
+                        {
+                            "key": "field_fc_ba_description",
+                            "label": "Opis (pod nagłówkiem)",
+                            "name": "description",
+                            "type": "textarea",
+                            "required": 0,
+                            "rows": 2
+                        },
+                        {
+                            "key": "field_fc_ba_image_before",
+                            "label": "Zdjęcie PRZED",
+                            "name": "image_before",
+                            "type": "image",
+                            "required": 0,
+                            "return_format": "url",
+                            "preview_size": "medium"
+                        },
+                        {
+                            "key": "field_fc_ba_image_after",
+                            "label": "Zdjęcie PO",
+                            "name": "image_after",
+                            "type": "image",
+                            "required": 0,
+                            "return_format": "url",
+                            "preview_size": "medium"
+                        },
+                        {
+                            "key": "field_fc_ba_subheading",
+                            "label": "Podtytuł (lewa kolumna pod sliderem)",
+                            "name": "subheading",
+                            "type": "text",
+                            "required": 0
+                        },
+                        {
+                            "key": "field_fc_ba_content",
+                            "label": "Treść (prawa kolumna pod sliderem)",
+                            "name": "content",
+                            "type": "wysiwyg",
+                            "required": 0,
+                            "tabs": "all",
+                            "toolbar": "basic",
+                            "media_upload": 0
+                        },
+                        {
+                            "key": "field_fc_ba_cta_text",
+                            "label": "CTA tekst",
+                            "name": "cta_text",
+                            "type": "text",
+                            "required": 0
+                        },
+                        {
+                            "key": "field_fc_ba_cta_link",
+                            "label": "CTA link",
+                            "name": "cta_link",
+                            "type": "url",
+                            "required": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
                 "layout_text_columns": {
                     "key": "layout_text_columns",
                     "name": "text_columns",
@@ -305,6 +407,14 @@
                             "name": "heading",
                             "type": "text",
                             "required": 0
+                        },
+                        {
+                            "key": "field_fc_highlights_description",
+                            "label": "Opis (pod nagłówkiem, nad punktami)",
+                            "name": "description",
+                            "type": "textarea",
+                            "required": 0,
+                            "rows": 2
                         },
                         {
                             "key": "field_fc_highlights_bg",

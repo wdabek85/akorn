@@ -26,6 +26,17 @@
         @include('sections.proces.index')
         @break
 
+      @case('portfolio')
+        @include('sections.portfolio.index', [
+          'portfolioCategory' => $section['category'] ?? '',
+          'portfolioCount' => (int) ($section['count'] ?? 3),
+        ])
+        @break
+
+      @case('before_after')
+        @include('sections.flexible.before-after', ['data' => $section])
+        @break
+
       @case('text_columns')
         @include('sections.flexible.text-columns', ['data' => $section])
         @break
@@ -42,6 +53,7 @@
         @include('sections.highlights.index', [
           'label' => $section['label'] ?? '',
           'heading' => $section['heading'] ?? '',
+          'description' => $section['description'] ?? '',
           'image' => $section['image'] ?? '',
           'imageCaption' => $section['image_caption'] ?? '',
           'footnote' => $section['footnote'] ?? '',
